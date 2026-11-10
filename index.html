@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What the Number Leaves Out</title>
+<meta name="description" content="A talkback by Dang Hoang (Dan): three numbers from my life, and the stories they leave out.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;500&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Merriweather+Sans:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #BA0C2F; --black: #000; --white: #fff;
+    --sanford: #554F47; --stegeman: #9EA2A2; --panel: #F3F2EE;
+    --display: 'Oswald', sans-serif; --serif: 'Merriweather', Georgia, serif; --sans: 'Merriweather Sans', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--white); color: var(--black); }
+  body { font-family: var(--serif); font-size: 17px; line-height: 1.7; min-height: 100vh; border-left: 10px solid var(--red); }
+  main { max-width: 760px; margin: 0 auto; padding: 48px 24px 64px; }
+  .label { font-family: var(--display); font-weight: 500; font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--red); }
+  .muted { font-family: var(--display); font-weight: 300; font-size: 13px; letter-spacing: .16em; text-transform: uppercase; color: var(--sanford); }
+  header { border-bottom: 1px solid var(--black); padding-bottom: 20px; margin-bottom: 28px; }
+  h1 { font-family: var(--display); font-weight: 500; font-size: clamp(40px, 8vw, 64px); line-height: 1; text-transform: uppercase; margin: 10px 0 12px; }
+  .lede { max-width: 560px; }
+
+  .numbers { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--black); border-bottom: 1px solid var(--black); margin: 28px 0 8px; }
+  .numbers button { all: unset; cursor: pointer; padding: 22px 18px 20px; border-left: 1px solid var(--stegeman); transition: background .15s; }
+  .numbers button:first-child { border-left: none; padding-left: 0; }
+  .numbers button:hover, .numbers button:focus-visible { background: var(--panel); }
+  .numbers button:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+  .numbers button[aria-pressed="true"] { background: var(--panel); }
+  .big { font-family: var(--display); font-weight: 300; font-size: clamp(48px, 10vw, 76px); line-height: 1; color: var(--red); display: block; }
+  .what { font-family: var(--display); font-weight: 500; font-size: 13px; letter-spacing: .18em; text-transform: uppercase; display: block; margin-top: 8px; }
+  .hint { font-family: var(--sans); font-size: 13px; color: var(--sanford); }
+
+  .story { margin-top: 28px; }
+  .story[hidden] { display: none; }
+  .story h2 { font-family: var(--display); font-weight: 500; font-size: 22px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 12px; }
+  .story p + p { text-indent: 2em; }
+  .back { all: unset; cursor: pointer; font-family: var(--sans); font-size: 14px; color: var(--sanford); text-decoration: underline; margin-top: 16px; display: inline-block; }
+
+  .ask { margin-top: 48px; border-top: 1px dashed var(--stegeman); padding-top: 28px; }
+  .ask h2 { font-family: var(--display); font-weight: 500; font-size: 28px; text-transform: uppercase; margin: 6px 0 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+  .chips button { all: unset; cursor: pointer; font-family: var(--sans); font-size: 14px; border: 1px solid var(--black); padding: 6px 12px; }
+  .chips button[aria-pressed="true"] { background: var(--black); color: var(--white); }
+  textarea { width: 100%; min-height: 110px; font: inherit; padding: 12px 14px; border: 1px solid var(--black); resize: vertical; }
+  textarea:focus { outline: 2px solid var(--red); outline-offset: 1px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; align-items: center; }
+  .btn { all: unset; cursor: pointer; font-family: var(--display); font-weight: 500; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; padding: 12px 18px; background: var(--black); color: var(--white); }
+  .btn.secondary { background: var(--white); color: var(--black); border: 1px solid var(--black); }
+  .btn:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+  .status { font-family: var(--sans); font-size: 13px; color: var(--sanford); }
+
+  .letter { margin-top: 40px; border: 2px solid var(--black); padding: 32px 28px; }
+  .letter[hidden] { display: none; }
+  .letter h2 { font-family: var(--display); font-weight: 500; font-size: 26px; text-transform: uppercase; text-align: center; margin: 6px 0 18px; }
+  .letter .label { display: block; text-align: center; }
+  .letter p + p { text-indent: 2em; }
+  .sign { font-style: italic; text-align: right; font-size: 20px; margin-top: 16px; }
+
+  footer { margin-top: 56px; border-top: 1px dashed var(--stegeman); padding-top: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+  @media (max-width: 560px) {
+    body { border-left-width: 6px; font-size: 16px; }
+    main { padding: 32px 16px 48px; }
+    .numbers { grid-template-columns: 1fr; }
+    .numbers button { border-left: none; border-top: 1px solid var(--stegeman); padding-left: 0; }
+    .numbers button:first-child { border-top: none; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="label">Cue 7 · House lights · Talkback</span>
+    <h1>What the Number Leaves Out</h1>
+    <p class="lede">I study data science and mathematics, and I often use numbers to explain my work. Here are three that need more explanation. Pick one to open its story, then tell me what you would ask next.</p>
+  </header>
+
+  <section aria-label="Three numbers">
+    <div class="numbers" role="group" aria-label="Choose a number">
+      <button type="button" aria-pressed="false" aria-controls="s800" data-story="s800"><span class="big">~800</span><span class="what">People</span><span class="hint">Open this story</span></button>
+      <button type="button" aria-pressed="false" aria-controls="s94" data-story="s94"><span class="big">94%</span><span class="what">Accuracy</span><span class="hint">Open this story</span></button>
+      <button type="button" aria-pressed="false" aria-controls="s49" data-story="s49"><span class="big">49</span><span class="what">Years old</span><span class="hint">Open this story</span></button>
+    </div>
+
+    <article class="story" id="s800" hidden tabindex="-1">
+      <h2>About 800 people</h2>
+      <p>In high school, I helped organize a Vietnamese spoken-theater performance that drew nearly eight hundred people. I worked on staging, sound, and lighting. The audience count tells you how many people came. To explain my part, I need to tell you what I helped them see and hear.</p>
+      <p>That is what still interests me about theater. A decision about sound or lighting reaches someone sitting in the audience. Now, when I work on a technical project, I also want to know who will use it and what they need from it. I enjoy thinking about how something I help make reaches another person.</p>
+      <button type="button" class="back">Back to the three numbers</button>
+    </article>
+
+    <article class="story" id="s94" hidden tabindex="-1">
+      <h2>94% accuracy</h2>
+      <p>At FPT Software, I worked on extracting information from medical records. One test produced a field-extraction accuracy score of 94 percent.</p>
+      <p>To understand that result, you need to know what counted as a correct extraction and which records we tested. I also need to explain a question I could not fully answer: how well did those records represent the larger collection?</p>
+      <p>The score describes a result for a particular task on a particular test. A broader claim about its usefulness would need more evidence. If I present a tool to someone else, I want to be able to explain that distinction before they depend on it.</p>
+      <button type="button" class="back">Back to the three numbers</button>
+    </article>
+
+    <article class="story" id="s49" hidden tabindex="-1">
+      <h2>49 years old</h2>
+      <p>My mother is forty-nine and has joined a vocal class. She goes on weekends. Sometimes she sings for her high school students, who had known her as their mathematics teacher.</p>
+      <p>When I interviewed her, she gave three reasons for choosing mathematics instead of singing: earning a living, following her father's profession, and doubting whether she was good enough to sing professionally. I wanted to understand how those reasons fit together. I am still thinking about her answer.</p>
+      <p>She continues to teach mathematics, and now she makes time for singing too. Writing about her has made me realize how much a description such as “my mother is a teacher” can leave out. I want to remember to ask about the rest.</p>
+      <button type="button" class="back">Back to the three numbers</button>
+    </article>
+  </section>
+
+  <section class="ask" aria-labelledby="ask-h">
+    <span class="label">The house lights are up</span>
+    <h2 id="ask-h">What would you ask me next?</h2>
+    <p>Which detail would you want to hear more about?</p>
+    <div class="chips" role="group" aria-label="Pick a detail">
+      <button type="button" aria-pressed="false">The performance</button>
+      <button type="button" aria-pressed="false">The accuracy score</button>
+      <button type="button" aria-pressed="false">My mother's singing</button>
+    </div>
+    <label for="q" class="hint">Your question</label>
+    <textarea id="q" placeholder="Type your question here."></textarea>
+    <div class="actions">
+      <button type="button" class="btn" id="send">Send it to Dan</button>
+      <button type="button" class="btn secondary" id="copy">Copy question</button>
+      <span class="status" id="status" role="status" aria-live="polite"></span>
+    </div>
+    <p class="hint" style="margin-top:10px">“Send it to Dan” opens a short form on GitHub with your question already filled in.</p>
+  </section>
+
+  <section class="letter" id="letter" hidden aria-labelledby="letter-h">
+    <span class="label">After the house lights</span>
+    <h2 id="letter-h">A note to future Dan</h2>
+    <p>When you have a result to share, explain enough for someone to ask a useful question about it. Tell them what you did and what you still need to find out. Listen when they ask about a part you spent less time thinking about.</p>
+    <p>I hope you keep making things you are excited to show people. I hope there is still theater or music somewhere in your life. And when your mother tells you about her class, ask what she is singing.</p>
+    <p class="sign">Dan</p>
+  </section>
+  <p style="margin-top:20px"><button type="button" class="back" id="showLetter">Read the note to future Dan</button></p>
+
+  <footer>
+    <span class="muted">Dang Hoang · ENGL 1102 · Fall 2026</span>
+    <span class="muted">Wild Card · What the Light Shows</span>
+  </footer>
+</main>
+<script>
+  const REPO = 'https://github.com/danghoang2605-ds-ai/what-the-number-leaves-out';
+  const numberButtons = document.querySelectorAll('.numbers button');
+  const stories = document.querySelectorAll('.story');
+  function open(id) {
+    stories.forEach(s => { s.hidden = s.id !== id; });
+    numberButtons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.story === id)));
+    const s = document.getElementById(id);
+    if (s) { s.focus({ preventScroll: true }); s.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }
+  numberButtons.forEach(b => b.addEventListener('click', () => open(b.dataset.story)));
+  document.querySelectorAll('.story .back').forEach(b => b.addEventListener('click', () => {
+    stories.forEach(s => { s.hidden = true; });
+    numberButtons.forEach(x => x.setAttribute('aria-pressed', 'false'));
+    document.querySelector('.numbers').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }));
+
+  const chips = document.querySelectorAll('.chips button');
+  chips.forEach(c => c.addEventListener('click', () => {
+    const on = c.getAttribute('aria-pressed') !== 'true';
+    chips.forEach(x => x.setAttribute('aria-pressed', 'false'));
+    c.setAttribute('aria-pressed', String(on));
+  }));
+
+  const q = document.getElementById('q'), status = document.getElementById('status'), letter = document.getElementById('letter');
+  function question() {
+    const chip = [...chips].find(c => c.getAttribute('aria-pressed') === 'true');
+    const text = q.value.trim();
+    return { chip: chip ? chip.textContent : '', text };
+  }
+  function revealLetter() { letter.hidden = false; document.getElementById('showLetter').hidden = true; }
+  document.getElementById('send').addEventListener('click', () => {
+    const { chip, text } = question();
+    if (!text && !chip) { status.textContent = 'Type a question or pick a detail first.'; q.focus(); return; }
+    const body = (chip ? 'Detail: ' + chip + '\n\n' : '') + (text || '(no question typed)');
+    const url = REPO + '/issues/new?title=' + encodeURIComponent('A question for Dan') + '&body=' + encodeURIComponent(body);
+    window.open(url, '_blank', 'noopener');
+    status.textContent = 'Thank you. The form opened in a new tab.';
+    revealLetter();
+  });
+  document.getElementById('copy').addEventListener('click', async () => {
+    const { chip, text } = question();
+    const s = (chip ? chip + ': ' : '') + text;
+    if (!s.trim()) { status.textContent = 'Nothing to copy yet.'; return; }
+    try { await navigator.clipboard.writeText(s); status.textContent = 'Copied.'; } catch { status.textContent = 'Select the text and copy it by hand.'; }
+    revealLetter();
+  });
+  document.getElementById('showLetter').addEventListener('click', () => { revealLetter(); letter.scrollIntoView({ behavior: 'smooth' }); });
+</script>
+</body>
+</html>
