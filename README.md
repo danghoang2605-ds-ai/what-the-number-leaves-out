@@ -1,4 +1,5 @@
 # What the Number Leaves Out
+Wild Card for ENGL 1102.
 
 The Wild Card exhibit for my ENGL 1102 final portfolio, *What the Light Shows*. Pick one of three numbers, read the story it leaves out, and ask me a question.
 
